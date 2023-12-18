@@ -1,11 +1,29 @@
 {
   "name": "@orbifold/utils",
+  "author": {
+    "email": "info@orbifold.net",
+    "name": "Orbifold Consulting (Francois Vanderseypen)",
+    "url": "https://orbifold.net"
+  },
+  "description": "A collection of utility functions",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Qwiery/qwiery-nuxt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Qwiery/qwiery-nuxt/issues",
+    "email": "info@orbifold.net"
+  },
+  "engines": {
+    "node": ">=18"
+  },
   "private": false,
   "version": "4.0.0",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
-  "typings": "./dist/index.d.ts",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -27,6 +45,7 @@
     "vitest": "^1.0.1",
     "jscrypto": "1.0.3",
     "lodash": "^4.17.21",
-    "moment": "^2.29.4"
+    "moment": "^2.29.4",
+    "@faker-js/faker": "^8.0.2"
   }
 }

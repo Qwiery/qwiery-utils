@@ -5,6 +5,7 @@ import * as path from "path";
 export default defineConfig({
   plugins: [
     dts({
+      rollupTypes: true,
       entryRoot: "src",
       tsconfigPath: path.join(__dirname, "tsconfig.json"),
     }),
