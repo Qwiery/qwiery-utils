@@ -9,10 +9,10 @@
   "homepage": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Qwiery/qwiery-nuxt.git"
+    "url": "https://github.com/Qwiery/qwiery-utils.git"
   },
   "bugs": {
-    "url": "https://github.com/Qwiery/qwiery-nuxt/issues",
+    "url": "https://github.com/Qwiery/qwiery-utils/issues",
     "email": "info@orbifold.net"
   },
   "engines": {
