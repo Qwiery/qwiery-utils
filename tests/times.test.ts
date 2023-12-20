@@ -1,7 +1,5 @@
 import {describe, test, it, expect} from 'vitest'
 
-import _ from "lodash";
-
 import moment from "moment";
 
 import {Time} from "../src/time";

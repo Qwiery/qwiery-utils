@@ -19,7 +19,7 @@
     "node": ">=18"
   },
   "private": false,
-  "version": "4.0.1",
+  "version": "4.0.2",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -46,6 +46,7 @@
     "jscrypto": "1.0.3",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
-    "@faker-js/faker": "^8.0.2"
+    "@faker-js/faker": "^8.0.2",
+    "vite-plugin-node-polyfills": "^0.17.0"
   }
 }

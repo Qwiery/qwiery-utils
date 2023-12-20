@@ -19,7 +19,7 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": false,
 
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "preserve",

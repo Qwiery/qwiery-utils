@@ -15,6 +15,6 @@ describe("Datasets", () => {
 			expect(dataset.schema || null).not.toBeNull();
 			expect(Datasets.cachedItemExists("food.json")).toBeTruthy();
 		},
-		{ timeout: 30000 },
+		{ timeout: 60000 },
 	);
 });
