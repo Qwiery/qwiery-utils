@@ -86,8 +86,8 @@ export const Utils = {
             }).format(num); // adds comma and two decimals
 
             return `${formatted}`;
-        } catch (e) {
-            console.warn(e.message);
+        } catch (e: any) {
+            console.warn(e.toString());
             return "";
         }
     },
@@ -1237,6 +1237,60 @@ export const Utils = {
         _.assign(node, {labels: specs.labels});
         return _.clone(node);
     },
+    isGraphLike(obj: any) {
+        if (_.isNil(obj)) {
+            return false;
+        }
+        if (_.isPlainObject(obj)) {
+            if (!Utils.isEmpty(obj)) {
+                if (obj.hasOwnProperty("nodes") && _.isArray(obj.nodes)) {
+                    for (const node of obj.nodes) {
+                        if(!Utils.isQwieryNode(node)){
+                            return false;
+                        }
+                    }
+                    if (obj.hasOwnProperty("edges") && _.isArray(obj.edges)) {
+                        for (const edge of obj.edges) {
+                            if(!Utils.isQwieryEdge(edge)){
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+                    return true;
+                }
+            }
+        }
+        return false;
+    },
+    isQwieryNode(obj: any) {
+        if (_.isNil(obj)) {
+            return false;
+        }
+        if (_.isPlainObject(obj)) {
+            if (!Utils.isEmpty(obj)) {
+                if (obj.hasOwnProperty("id") && Utils.isSimpleValue(obj.id) && !Utils.isEmpty(obj.id)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    },
+    isQwieryEdge(obj: any) {
+        if (_.isNil(obj)) {
+            return false;
+        }
+        if (_.isPlainObject(obj)) {
+            if (!Utils.isEmpty(obj)) {
+                if (obj.hasOwnProperty("sourceId") && Utils.isSimpleValue(obj.sourceId) && !Utils.isEmpty(obj.sourceId) && obj.hasOwnProperty("targetId") && Utils.isSimpleValue(obj.targetId) && !Utils.isEmpty(obj.targetId)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 };
-
-export   type Nullable<T> = T | null;
+/**
+ * A type alias for a nullable value.
+ */
+export type Nullable<T> = T | null;

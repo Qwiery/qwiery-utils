@@ -10,3 +10,4 @@ export * from "~/predecessors";
 export * from "~/strings";
 export * from "~/time";
 export * from "~/utils";
+export * from "~/interfaces";
