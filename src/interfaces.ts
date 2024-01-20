@@ -170,12 +170,12 @@ export interface IGraphView {
 	/**
 	 * Returns the nodes of the graph or the ones satisfying the given predicate.
 	 */
-	getNodes: (filter?: Function) => any[];
+	getNodes: (predicate?: Function) => any[];
 
 	/**
 	 * Returns the edges of the graph or the ones satisfying the given predicate.
 	 */
-	getEdges: (filter?: Function) => any[];
+	getEdges: (predicate?: Function) => any[];
 
 	/**
 	 * Removes the nodes with degree zero.
@@ -248,4 +248,33 @@ export interface IGraphView {
 	 * Adds the given (sub)graph to the current one.
 	 * */
 	augment: (g: GraphLike) => void;
+
+	/*
+	 * Returns the underlying native graph visualization object.
+	 */
+	native: () => any;
+
+	/**
+	 * Hides the nodes satisfying the predicate.
+	 * @param predicate {Function} A predicate.
+	 */
+	hideNodes: (predicate?: Function) => void;
+
+	/*
+	 * Shows the nodes satisfying the predicate.
+	 * @param predicate {Function} A predicate.
+	 */
+	showNodes: (predicate?: Function) => void;
+
+	/**
+	 * Hides the edges satisfying the predicate.
+	 * @param predicate {Function} A predicate.
+	 */
+	hideEdges: (predicate?: Function) => void;
+
+	/*
+	 * Shows the edges satisfying the predicate.
+	 * @param predicate {Function} A predicate.
+	 */
+	showEdges: (predicate?: Function) => void;
 }
