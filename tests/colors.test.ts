@@ -1,5 +1,5 @@
 import {describe, test, it, expect} from 'vitest'
-import {Colors} from "../src/colors";
+import {Colors} from "../src";
 
 describe("Colors", function () {
     it("should fetch a random color name", function () {
