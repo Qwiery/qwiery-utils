@@ -8,12 +8,14 @@ import {Utils} from "~/utils";
  */
 const DatasetUtils = {
     /**
-     * This is the path to the datasets directory.
-     * @return {string}
+     * This clears the datasets directory.
      */
-    get datasetsPath() {
-        // things like path.join(__dirname, "../../../datasets") doesnt work because __dirname is not recognized
-        return "public/datasets";
+    clearDatasetCache() {
+        DatasetUtils.ensureDatasetsDirectory();
+        const files = fs.readdirSync(DatasetUtils.datasetsPath);
+        for (let i = 0; i < files.length; i++) {
+            fs.unlinkSync(path.join(DatasetUtils.datasetsPath, files[i]));
+        }
     },
 
     /**
@@ -21,13 +23,22 @@ const DatasetUtils = {
      * @param datasetName {string} The name of the dataset file.
      * @return {boolean} True if the dataset file exists.
      */
-    datasetFileExists(datasetName) {
+    datasetFileExists(datasetName: string): boolean {
         // check that datasetName has extension .json
         if (!datasetName.endsWith(".json")) {
             datasetName = datasetName + ".json";
         }
         const p = path.join(DatasetUtils.datasetsPath, datasetName);
         return fs.existsSync(p);
+    },
+
+    /**
+     * This is the path to the datasets directory.
+     * @return {string}
+     */
+    get datasetsPath(): string {
+        // things like path.join(__dirname, "../../../datasets") doesnt work because __dirname is not recognized
+        return "public/datasets";
     },
 
     /**
@@ -39,17 +50,6 @@ const DatasetUtils = {
         }
         if (!fs.existsSync(DatasetUtils.datasetsPath)) {
             fs.mkdirSync(DatasetUtils.datasetsPath);
-        }
-    },
-
-    /**
-     * This clears the datasets directory.
-     */
-    clearDatasetCache() {
-        DatasetUtils.ensureDatasetsDirectory();
-        const files = fs.readdirSync(DatasetUtils.datasetsPath);
-        for (let i = 0; i < files.length; i++) {
-            fs.unlinkSync(path.join(DatasetUtils.datasetsPath, files[i]));
         }
     },
 };
@@ -68,7 +68,7 @@ const JsonDatasets = {
      * @param datasetName {string} The name of the dataset file.
      * @return {any|null}
      */
-    getCachedJson(datasetName) {
+    getCachedJson(datasetName: string): any | null {
         DatasetUtils.ensureDatasetsDirectory();
         if (!DatasetUtils.datasetFileExists(datasetName)) {
             return null;
@@ -88,7 +88,7 @@ const JsonDatasets = {
      * @param url {URL} The URL of the file.
      * @return {Promise<any>}
      */
-    async fetchFromGoogleDrive(url) {
+    async fetchFromGoogleDrive(url: URL): Promise<any> {
         try {
             const res = await fetch(url);
             if (res.ok) {
@@ -107,7 +107,7 @@ const JsonDatasets = {
      * @param datasetName {string} The name of the dataset file.
      * @param dataset {any} The dataset to save.
      */
-    saveDataset(datasetName, dataset) {
+    saveDataset(datasetName: string, dataset: any) {
         const p = path.join(DatasetUtils.datasetsPath, datasetName);
         if (_.isString(dataset)) {
             fs.writeFileSync(p, dataset);
@@ -121,7 +121,7 @@ const JsonDatasets = {
      * @param datasetName {string} The name of the dataset file.
      * @return {Promise<*|null>} The dataset.
      */
-    async getDataset(datasetName) {
+    async getDataset(datasetName: string): Promise<any | null> {
         if (Utils.isEmpty(datasetName)) {
             throw new Error("datasetName is required");
         }
